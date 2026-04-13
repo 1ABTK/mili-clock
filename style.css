@@ -1,0 +1,110 @@
+:root {
+    --bg-color: #ffffff;
+    --nav-bg: #ffffff;
+    --text-main: #1f2328;
+    --text-muted: #656d76;
+    --border-color: #d0d7de;
+    --btn-bg: #f6f8fa;
+    --btn-hover: #f3f4f6;
+}
+
+body.dark-mode {
+    --bg-color: #0d1117;
+    --nav-bg: #161b22;
+    --text-main: #e6edf3;
+    --text-muted: #8b949e;
+    --border-color: #30363d;
+    --btn-bg: #21262d;
+    --btn-hover: #30363d;
+}
+
+body {
+    margin: 0;
+    transition: background 0.2s ease;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+/* RESPONSIVE NAV */
+.controls {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Prevents overlap */
+    gap: 15px;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--nav-bg);
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* BUTTONS & SELECTS */
+.select-wrapper { position: relative; }
+.select-wrapper::after {
+    content: "▼"; font-size: 9px; position: absolute; 
+    right: 10px; top: 50%; transform: translateY(-50%);
+    pointer-events: none; color: var(--text-muted);
+}
+
+.gh-select, .gh-btn {
+    appearance: none;
+    background-color: var(--btn-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-main);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.gh-select { padding-right: 28px; }
+
+/* CLOCK BODY */
+.clock-body {
+    height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.display {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+/* SIZE LOGIC FIX */
+.size-large .display { font-size: clamp(3rem, 15vw, 15rem); }
+.size-large #ms { font-size: clamp(1.5rem, 8vw, 8rem); }
+
+.size-medium .display { font-size: clamp(2rem, 8vw, 7rem); }
+.size-medium #ms { font-size: clamp(1rem, 4vw, 4rem); }
+
+.size-small .display { font-size: clamp(1.5rem, 5vw, 3.5rem); }
+.size-small #ms { font-size: clamp(1rem, 3vw, 2rem); }
+
+.format-note { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+.date-text { margin-top: 15px; color: var(--text-muted); font-size: clamp(1rem, 2vw, 1.8rem); }
+
+/* MOBILE ADJUSTMENTS */
+@media (max-width: 600px) {
+    .controls { justify-content: center; }
+    .clock-body { height: auto; margin-top: 50px; }
+}
+
+:fullscreen .controls { display: none; }
